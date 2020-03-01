@@ -9,8 +9,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var appleDevices = ["iPad", "iPhone", "iMac", "AirPods"]
+    
+    func addRow() {
+        self.appleDevices.append("Macbook")
+    }
+    
+    
     var body: some View {
-        Text("Hello, World!")
+        
+        NavigationView {
+            List {
+                ForEach(appleDevices, id: \.self) { device in
+                    Text(device)
+                }
+            }
+            .navigationBarTitle(Text("Apple Devices"))
+            .navigationBarItems(trailing: Button(action : {
+                self.addRow()
+            }) {
+                Image(systemName: "plus")
+            })
+        }
     }
 }
 
